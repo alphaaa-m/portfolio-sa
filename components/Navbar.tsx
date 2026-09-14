@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Atom, Download } from 'lucide-react';
 
 const NAV_LINKS = [
@@ -35,12 +34,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex items-center gap-2 group">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-            >
+            <div className="animate-[spin_10s_linear_infinite]">
               <Atom className="w-8 h-8 text-electric-cyan" />
-            </motion.div>
+            </div>
             <span className="font-bold text-xl tracking-wider text-soft-white group-hover:text-electric-cyan transition-colors">
               SADIA AMJAD
             </span>
@@ -58,13 +54,7 @@ export default function Navbar() {
               >
                 {link.name}
                 {pathname === link.path && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute -bottom-1 left-0 w-full h-[2px] bg-electric-cyan"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-electric-cyan" />
                 )}
               </Link>
             ))}
@@ -88,14 +78,8 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Nav Drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-20 left-0 w-full bg-deep-space/95 backdrop-blur-lg border-b border-white/10 shadow-2xl"
-          >
+      {isOpen && (
+          <div className="md:hidden absolute top-20 left-0 w-full bg-deep-space/95 backdrop-blur-lg border-b border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-5 duration-200">
             <div className="px-4 pt-2 pb-6 space-y-2">
               {NAV_LINKS.map((link) => (
                 <Link
@@ -122,9 +106,8 @@ export default function Navbar() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </header>
   );
 }
