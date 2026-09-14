@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-space: #0B1026;
+  --color-electric-cyan: #00E5FF;
+  --color-scientific-purple: #6C63FF;
+  --color-plasma-blue: #36CFFF;
+  --color-soft-white: #F5F7FA;
+
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+  body {
+    @apply bg-deep-space text-soft-white antialiased overflow-x-hidden selection:bg-electric-cyan selection:text-deep-space;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-deep-space;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-scientific-purple/50 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-electric-cyan;
+  }
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+}
+
+.heading-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-electric-cyan to-scientific-purple;
+}
